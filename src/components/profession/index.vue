@@ -3,6 +3,7 @@ import { createNamespace } from '@/utils'
 const { bem } = createNamespace('heluo-sys-profession')
 import {useProfession} from '@/hooks'
 import cardtitle from '@/components/cardtitle/index.vue'
+import switchbtn from '@/components/switchbtn/index.vue'
 import {UeReportType, IProfession} from '@/types'
 import {useUeConnect} from '@/hooks'
 const {ueConnect} = useUeConnect()
@@ -12,7 +13,7 @@ const clickWrap = (item:IProfession, idx:number) => {
   ueConnect(UeReportType.PROFESSION, {
     opt: JSON.stringify({
       major: item.major,
-      state: !item.state
+      state: item.state
     })
   })
 }
@@ -24,7 +25,8 @@ const clickWrap = (item:IProfession, idx:number) => {
     <ul>
       <li v-for="(item, idx) in professionList" :key="idx" class="flex-between" @click="clickWrap(item, idx)">
         <span>{{item.major}}</span>
-        <span>{{item.state}}</span>
+        <span :class="bem('opacity0')">{{item.state}}</span>
+        <switchbtn :checked="item.state" :idx="idx" />
       </li>
     </ul>
    </div>
@@ -49,7 +51,17 @@ const clickWrap = (item:IProfession, idx:number) => {
       &:hover{
         font-weight: bold;
       }
+      position: relative;
     }
+  }
+  &__opacity0{
+    opacity: 0;
+    position: absolute;
+    top:10px;
+    right:0;
+    width: 100px;
+    height: 30px;
+    z-index: 20;
   }
 }
 </style>

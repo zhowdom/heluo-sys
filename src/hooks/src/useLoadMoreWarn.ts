@@ -3,8 +3,10 @@ import { IWarnInfos } from '@/types'
 import {ref} from 'vue'
 import {useWarnTypeStore} from '@/stores'
 import { storeToRefs } from 'pinia'
+import {rnd} from '@/utils'
 
 export function useLoadMoreWarn() {
+  const curWarnMenuActivedIdx = ref(0)
   const warnTypeStore = useWarnTypeStore()
   const {currenntChoosedWarnCode} = storeToRefs(warnTypeStore)
   const isloadingRequest = ref(false)
@@ -17,11 +19,12 @@ export function useLoadMoreWarn() {
 
     if (loadMore) {
       currentPage.value = 1
+      warnListArr.value = []
     }
 
     const param = {
       pageIndex: currentPage.value,
-      pageLength: 10,
+      pageLength: 100000,
       type: currenntChoosedWarnCode.value
     }
     console.log(param, 'param')
@@ -29,7 +32,7 @@ export function useLoadMoreWarn() {
       let res = await warnlistApi(param);
       console.log(res, 'warn000')
       warnListArr.value = res.data.data || []
-      // currentPage.value = res.data.currentPage
+      // currentPage.value = res.data.currentPage // 接口currentPage返回错误，此处没有用这个做分页逻辑
       totalPage.value = res.data.totalPage
       rowCount.value = res.data.rowCount
       currentPage.value++
@@ -46,12 +49,9 @@ export function useLoadMoreWarn() {
       }, rnd(1,5) * 200)
     }
   }
-  const rnd = (n:number, m:number) => {
-    // random number for: [n, m)
-    return Math.floor(Math.random() * (m - n) + n)
-  }
-  const clickWraper = (typeCode:string, loadMore:boolean) => {
+  const clickWraper = (typeCode:string, loadMore:boolean, idx:number) => {
     currenntChoosedWarnCode.value = typeCode
+    curWarnMenuActivedIdx.value = idx
     // loadMore是否刷新操作[当前页重置为1]
     loadMoreWarn(loadMore)
   }
@@ -59,6 +59,7 @@ export function useLoadMoreWarn() {
   return {
     warnListArr,
     isloadingRequest,
+    curWarnMenuActivedIdx,
     clickWraper,
     loadMoreWarn
   }

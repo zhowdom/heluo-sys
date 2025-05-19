@@ -11,7 +11,6 @@ export function initClickOutsideToClose(
     console.warn('Dialog element not found');
     return () => {};
   }
-
   const handleClickOutside = (event: MouseEvent) => {
     // 检查点击是否在弹窗内部
     const isClickInside = dialogElement.contains(event.target as Node);

@@ -2,9 +2,11 @@
 import { createNamespace } from '@/utils'
 const { bem } = createNamespace('heluo-sys-device')
 import cardtitle from '@/components/cardtitle/index.vue'
+// import Loading from '@/components/loading/index.vue'
 import {IDeviceType} from '@/types'
 defineProps<{
   floorToDeviceList: IDeviceType[];
+  loading: Boolean
 }>();
 </script>
 
@@ -12,6 +14,7 @@ defineProps<{
    <div :class="[bem()]">
     <cardtitle name="设备" />
     <div :class="bem('main')">
+      <!-- <Loading v-if="loading" /> -->
       <div v-for="(item, idx) in floorToDeviceList" :key="idx" :class="bem('each')">
         <img src="@/assets/usedimg/device/AirConditioner.png" />
         <p>{{item.typeName}}</p>

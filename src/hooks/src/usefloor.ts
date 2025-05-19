@@ -2,6 +2,7 @@ import { floorlistApi, floorlisttodeviceApi } from '@/apis'
 import {IFloor, IDeviceType} from '@/types'
 import {ref, Ref} from 'vue'
 import { useRouter } from 'vue-router'
+import {rnd} from '@/utils'
 
 export function useFloor(path:string) {
   const floorData: Ref<IFloor[]> = ref<IFloor[]>([])
@@ -18,14 +19,28 @@ export function useFloor(path:string) {
 
   const formatFloor = (str:string) => str.replace(/F0?(\d{1,2})/, '$1F')
 
+  const getFloorlisttodeviceLoading = ref(false)
   const getFloorlisttodevice = async (spaceId) => {
+    
     if (path === 'layer') {
+      getFloorlisttodeviceLoading.value = true
       const param = {
         findCount: true,
         spaceId
       }
-      const res = await floorlisttodeviceApi(param)
-      floorToDeviceList.value = res?.data?.data || []
+      try {
+        const res = await floorlisttodeviceApi(param)
+        floorToDeviceList.value = res?.data?.data || []
+      } catch (e) {
+        setTimeout(() => {
+          getFloorlisttodeviceLoading.value = false
+        }, rnd(1, 5) * 200)
+        console.log(e)
+      } finally {
+        setTimeout(() => {
+          getFloorlisttodeviceLoading.value = false
+        }, rnd(1, 5) * 200)
+      }
     } else {
       router.push({
         name: 'layer',
@@ -100,6 +115,7 @@ export function useFloor(path:string) {
     floorData,
     currentIndex,
     floorToDeviceList,
+    getFloorlisttodeviceLoading,
     formatFloor,
     getFloorData,
     initFloor,

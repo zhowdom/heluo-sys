@@ -11,7 +11,7 @@ const {ueConnect} = useUeConnect()
 const props = defineProps<{
   path?: string
 }>();
-const {getFloorData, floorData, formatFloor, initFloor, getFloorlisttodevice, floorToDeviceList} = useFloor(props.path)
+const {getFloorData, floorData, formatFloor, initFloor, getFloorlisttodevice, floorToDeviceList, getFloorlisttodeviceLoading} = useFloor(props.path)
 
 onMounted(async () => {
   await getFloorData()
@@ -19,7 +19,8 @@ onMounted(async () => {
 })
 
 defineExpose({
-  floorToDeviceList
+  floorToDeviceList,
+  getFloorlisttodeviceLoading
 })
 
 const clickWraper = (item:IFloor) => {

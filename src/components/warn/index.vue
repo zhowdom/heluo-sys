@@ -4,29 +4,31 @@ const { bem } = createNamespace('heluo-sys-warn')
 import {useLoadMoreWarn, useInfiniteScroll} from '@/hooks'
 import WarnItem from '@/components/warnItem/index.vue'
 import { storeToRefs } from 'pinia'
-import {useWarnTypeStore} from '@/stores'
+import {useWarnTypeStore, useGlobalVisibleControllerStore} from '@/stores'
 import {onMounted} from 'vue'
-import Loding from '@/components/loading/index.vue'
+import Loading from '@/components/loading/index.vue'
 defineProps({
   name: {
     type: String,
     default: ''
   }
 })
-const {loadMoreWarn, warnListArr, clickWraper, isloadingRequest} = useLoadMoreWarn()
+const {loadMoreWarn, warnListArr, clickWraper, isloadingRequest, curWarnMenuActivedIdx} = useLoadMoreWarn()
 const warnTypeStore = useWarnTypeStore()
-const {warnTypeArr, currenntChoosedWarnCode} = storeToRefs(warnTypeStore)
+const {warnTypeArr, currenntChoosedWarnCode, } = storeToRefs(warnTypeStore)
+const warnDialogStore = useGlobalVisibleControllerStore()
+const {globalVisiblePool} = storeToRefs(warnDialogStore)
 const { containerRef, isLoadedAllData } = useInfiniteScroll(loadMoreWarn);
 onMounted(() => {
-  clickWraper(currenntChoosedWarnCode.value, true)
+  clickWraper(currenntChoosedWarnCode.value, true, 0)
 })
 </script>
 
 <template>
-   <div :class="[bem()]">
+   <div :class="[bem(), 'mydialog']" ref="warnDialogRef" v-if="globalVisiblePool.warn.state">
     <div :class="bem('type-box')">
       <ul>
-        <li v-for="(item, idx) in warnTypeArr" :key="idx" @click="clickWraper(item.typeCode, true)">{{item.typeName}}</li>
+        <li v-for="(item, idx) in warnTypeArr" :class="[curWarnMenuActivedIdx === idx ? 'cur' : '']" :key="idx" @click="clickWraper(item.typeCode, true, idx)">{{item.typeName}}</li>
       </ul>
     </div>
 
@@ -34,14 +36,13 @@ onMounted(() => {
       <div :class="bem('show-item')" v-for="(item, index) in warnListArr" :key="index">
         <WarnItem :warnInfos="item" />
       </div>
-      <div class="flex-center" style="margin-top:200px;">
-        <Loding v-if="isloadingRequest" />
-        <div v-if="isLoadedAllData && !isloadingRequest" :class="bem('finished')">已加载完全部数据</div>
-        <div v-if="warnListArr?.length === 0 && !isloadingRequest" :class="bem('empty')">暂无数据～</div>
+      <div :class="[bem('loading-info-state'), 'flex-center']">
+        <Loading v-if="isloadingRequest" />
+        <p v-if="warnListArr?.length === 0 && !isloadingRequest">暂无数据～</p>
+        <p v-else-if="isLoadedAllData && !isloadingRequest">已加载完全部~</p>
       </div>
-      
     </div>
-
+    <div :class="bem('mask-layer')" @click="globalVisiblePool.warn.state = !globalVisiblePool.warn.state"></div>
    </div>
 </template>
 
@@ -49,7 +50,7 @@ onMounted(() => {
 .heluo-sys-warn{
   height:860px;
   width:550px;
-  background: linear-gradient( 180deg, #12171E 0%, #0E1A2A 100%);
+  background: rgba(31, 37, 42,.9);
   border-radius: 0px 0px 0px 0px;
   position: absolute;
   top:50px;
@@ -82,11 +83,22 @@ onMounted(() => {
     margin-top: 12px;
     height: 810px;
   }
-  &__finished,
-  &__empty{
-    font-size: 26px;
-    color: red;
-    font-weight: bold;
+  &__loading-info-state{
+    // height: inherit;
+    margin-top:20px;
+    color: #66c2ac;
+    p{
+      padding: 20px 0;
+    }
+  }
+  &__mask-layer{
+    position: fixed;
+    top:0;
+    left: 0;
+    right:0;
+    bottom: 0;
+    z-index: -1;
+    opacity: 0;
   }
 }
 </style>

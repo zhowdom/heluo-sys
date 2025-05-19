@@ -1,45 +1,104 @@
 <script setup lang="ts">
-import { createNamespace } from '@/utils'
-const { bem } = createNamespace('heluo-sys-loading')
 </script>
 
 <template>
-   <div :class="bem()">
-    <div class="face front"></div>
-    <div class="face back"></div>
-    <div class="face left"></div>
-    <div class="face right"></div>
-    <div class="face top"></div>
-    <div class="face bottom"></div>
-    </div>
+   <div class="fingerprint-spinner">
+    <div class="spinner-ring"></div>
+    <div class="spinner-ring"></div>
+    <div class="spinner-ring"></div>
+    <div class="spinner-ring"></div>
+    <div class="spinner-ring"></div>
+    <div class="spinner-ring"></div>
+    <div class="spinner-ring"></div>
+    <div class="spinner-ring"></div>
+    <div class="spinner-ring"></div>
+  </div>
 
 </template>
 
 <style scoped lang="less">
-.heluo-sys-loading{
-  width: 40px;
-  height: 40px;
-  position: relative;
-  transform-style: preserve-3d;
-  animation: rotate 3s infinite linear;
-  .face {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  opacity: 0.8;
-  border: 2px solid #fff;
-  background: linear-gradient(45deg, #ff3d77, #338aff);
-}
+.fingerprint-spinner, .fingerprint-spinner * {
+      box-sizing: border-box;
+    }
 
-.front { transform: translateZ(20px); }
-.back { transform: rotateY(180deg) translateZ(20px); }
-.right { transform: rotateY(90deg) translateZ(20px); }
-.left { transform: rotateY(-90deg) translateZ(20px); }
-.top { transform: rotateX(90deg) translateZ(20px); }
-.bottom { transform: rotateX(-90deg) translateZ(20px); }
-}
-@keyframes rotate {
-  from { transform: rotateX(0) rotateY(0); }
-  to { transform: rotateX(360deg) rotateY(360deg); }
-}
+    .fingerprint-spinner {
+      height: 64px;
+      width: 64px;
+      padding: 2px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .fingerprint-spinner .spinner-ring {
+      position: absolute;
+      border-radius: 50%;
+      border: 2px solid transparent;
+      border-top-color: #66c2ac;
+      animation: fingerprint-spinner-animation 1500ms cubic-bezier(0.680, -0.750, 0.265, 1.750) infinite forwards;
+      margin: auto;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      top: 0;
+    }
+
+    .fingerprint-spinner .spinner-ring:nth-child(1) {
+      height: calc(60px / 9 + 0 * 60px / 9);
+      width: calc(60px / 9 + 0 * 60px / 9);
+      animation-delay: calc(50ms * 1);
+    }
+
+    .fingerprint-spinner .spinner-ring:nth-child(2) {
+      height: calc(60px / 9 + 1 * 60px / 9);
+      width: calc(60px / 9 + 1 * 60px / 9);
+      animation-delay: calc(50ms * 2);
+    }
+
+    .fingerprint-spinner .spinner-ring:nth-child(3) {
+      height: calc(60px / 9 + 2 * 60px / 9);
+      width: calc(60px / 9 + 2 * 60px / 9);
+      animation-delay: calc(50ms * 3);
+    }
+
+    .fingerprint-spinner .spinner-ring:nth-child(4) {
+      height: calc(60px / 9 + 3 * 60px / 9);
+      width: calc(60px / 9 + 3 * 60px / 9);
+      animation-delay: calc(50ms * 4);
+    }
+
+    .fingerprint-spinner .spinner-ring:nth-child(5) {
+      height: calc(60px / 9 + 4 * 60px / 9);
+      width: calc(60px / 9 + 4 * 60px / 9);
+      animation-delay: calc(50ms * 5);
+    }
+
+    .fingerprint-spinner .spinner-ring:nth-child(6) {
+      height: calc(60px / 9 + 5 * 60px / 9);
+      width: calc(60px / 9 + 5 * 60px / 9);
+      animation-delay: calc(50ms * 6);
+    }
+
+    .fingerprint-spinner .spinner-ring:nth-child(7) {
+      height: calc(60px / 9 + 6 * 60px / 9);
+      width: calc(60px / 9 + 6 * 60px / 9);
+      animation-delay: calc(50ms * 7);
+    }
+
+    .fingerprint-spinner .spinner-ring:nth-child(8) {
+      height: calc(60px / 9 + 7 * 60px / 9);
+      width: calc(60px / 9 + 7 * 60px / 9);
+      animation-delay: calc(50ms * 8);
+    }
+
+    .fingerprint-spinner .spinner-ring:nth-child(9) {
+      height: calc(60px / 9 + 8 * 60px / 9);
+      width: calc(60px / 9 + 8 * 60px / 9);
+      animation-delay: calc(50ms * 9);
+    }
+
+    @keyframes fingerprint-spinner-animation {
+      100% {
+        transform: rotate( 360deg );
+      }
+    }
 </style>

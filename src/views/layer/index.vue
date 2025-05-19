@@ -12,7 +12,7 @@ const refFloor = ref<HTMLElement>(null!)
   <div :class="[bem(), 'flex-between']">
     <!-- <floor top="270px" left="0px" path="layer" ref="refFloor" /> -->
     <floor path="layer" ref="refFloor" />
-    <device :floorToDeviceList="refFloor?.floorToDeviceList" />
+    <device :floorToDeviceList="refFloor?.floorToDeviceList" :loading="refFloor?.getFloorlisttodeviceLoading" />
     <profession :class="bem('mgl-auto')" />
   </div>
 </template>
