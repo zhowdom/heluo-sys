@@ -1,2 +1,3 @@
-# heluo-sys
-heluo building system 2025/5/19
+# Vue 3 + TypeScript + Vite + Pinia
+
+Scientific Research Building Intelligent Operation Platform.

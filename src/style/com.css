@@ -1,0 +1,63 @@
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  /* color-scheme: light dark; */ /* light dark theam */
+}
+*{
+  margin:0;
+  padding: 0;
+}
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  width: 100%;
+  background: url('@assets/usedimg/mask@2x.png') no-repeat center / cover;
+  color: #fff;
+}
+
+.flex-center{
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.flex-between{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.flex-wrap{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* 禁用元素默认滚动行为 */
+.no-scroll {
+  touch-action: none;
+  overscroll-behavior: contain;
+}
+
+.set-center{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+ul,li,ol{
+  list-style: none;
+}
+#app{
+  width: 100%;
+}
+
+.height100{
+  height:100vh!important;
+}
