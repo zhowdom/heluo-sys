@@ -25,7 +25,7 @@ const {handleMouseEnter, handleMouseLeave, initialh, visible} = useUser()
 .heluo-sys-user{
    height: v-bind(initialh);
    position: absolute;
-   top:0;
+   top:10px;
    right:20px;
    z-index: 10;
    &__in{

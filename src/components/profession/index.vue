@@ -3,20 +3,26 @@ import { createNamespace } from '@/utils'
 const { bem } = createNamespace('heluo-sys-profession')
 import {useProfession} from '@/hooks'
 import cardtitle from '@/components/cardtitle/index.vue'
-defineProps({
-  name: {
-    type: String,
-    default: ''
-  }
-})
-const {professionList} = useProfession()
+import {UeReportType, IProfession} from '@/types'
+import {useUeConnect} from '@/hooks'
+const {ueConnect} = useUeConnect()
+const {professionList, alterProfessionList} = useProfession()
+const clickWrap = (item:IProfession, idx:number) => {
+  alterProfessionList(idx)
+  ueConnect(UeReportType.PROFESSION, {
+    opt: JSON.stringify({
+      major: item.major,
+      state: !item.state
+    })
+  })
+}
 </script>
 
 <template>
    <div :class="[bem()]">
-    <cardtitle name="sss" />
+    <cardtitle name="专业" />
     <ul>
-      <li v-for="(item, idx) in professionList" :key="idx" class="flex-between">
+      <li v-for="(item, idx) in professionList" :key="idx" class="flex-between" @click="clickWrap(item, idx)">
         <span>{{item.major}}</span>
         <span>{{item.state}}</span>
       </li>

@@ -2,7 +2,10 @@
 import { createNamespace } from '@/utils'
 const { bem } = createNamespace('heluo-sys-warn-item')
 import {IWarnInfos} from '@/types'
-import {PropType} from 'vue' 
+import {PropType} from 'vue'
+import {UeReportType} from '@/types'
+import {useUeConnect} from '@/hooks'
+const {ueConnect} = useUeConnect()
 defineProps({
   warnInfos: {
     type: Object as PropType<IWarnInfos>
@@ -11,7 +14,7 @@ defineProps({
 </script>
 
 <template>
-   <div :class="[bem()]">
+   <div :class="[bem()]" @click="ueConnect(UeReportType.WARN_ITEM, {opt: warnInfos.id})">
       <div :class="[bem('each'), 'flex-between', 'header']">
         <div :class="bem('l')">
           <span>{{warnInfos.alarmDesc}}</span>

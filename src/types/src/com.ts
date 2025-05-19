@@ -104,6 +104,8 @@ export interface IWarnInfos {
   spaceIdName: string
   // 设备编码
   spaceIdNumber: string
+  // 报警ID
+  id: string
 }
 
 export interface IWeatherData {
@@ -140,4 +142,81 @@ export interface InfiniteScrollOptions {
    * @default false
    */
   immediate?: boolean;
+}
+// UE与前端交互的触发事件列别
+export enum UeReportType {
+  /**
+   * 悬浮菜单角度
+   */
+  FLOAT_DIRECTION = 'float_direction',
+  /**
+   * 悬浮菜单首页Home
+   */
+  FLOAT_MENU_HOME = 'float_menu_home',
+  /**
+   * 天气[无需参数]
+   */
+  WEATHER = 'weather',
+  /**
+   * 报警列表每一项
+   */
+  WARN_ITEM = 'warn_item',
+  /**
+   * 设备列表[定位-暂时不需要]
+   */
+  DEVICE_ITEM = 'device_item',
+  /**
+   * 专业面板每一项
+   */
+  PROFESSION = 'profession',
+  /**
+   * 楼层
+   */
+  FLOOR = 'floor',
+}
+// UE与店端通讯传递的对应类别参数名
+export enum UeReportParams {
+  /**
+   * 悬浮菜单角度
+   */
+  float_direction = '点击角度',
+  /**
+   * 悬浮菜单首页Home
+   */
+  float_menu_home = '点击菜单栏',
+  /**
+   * 天气
+   */
+  weather = '天气控制',
+  /**
+   * 报警列表每一项
+   */
+  warn_item = '报警',
+  /**
+   * 设备列表
+   */
+  device_item = '定位',
+  /**
+   * 专业面板每一项
+   */
+  profession = '设备显隐',
+  /**
+   * 楼层
+   */
+  floor = '楼层抽屉',
+}
+
+export interface IProfession {
+  /**
+   * 专业面板每一项major的中文字符
+   */ 
+  major: string;
+  /**
+   * 专业面板更改专业勾选state状态参数
+   */
+  param: string;
+  /**
+   * 专业面板每一项开启状态
+   */
+  state: boolean;
 }

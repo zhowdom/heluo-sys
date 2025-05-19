@@ -17,8 +17,10 @@ const { bem } = createNamespace('heluo-sys-home-wrap')
       <card name="newwind" position="left"></card>
       <card name="ventilate" position="left"></card>
     </div>
+    <floor :class="bem('mrgl-auto')" />
     <div :class="bem('r')">
-      <floor top="100px" left="-100px" />
+      <!-- <floor top="100px" left="-100px" /> -->
+      
       <card name="devicesituation" position="right"></card>
       <card name="exhaust" position="right"></card>
       <card name="remainwind" position="right"></card>
@@ -31,6 +33,9 @@ const { bem } = createNamespace('heluo-sys-home-wrap')
   width: 100%;
   &__r{
     position: relative;
+  }
+  &__mrgl-auto{
+    margin-left: auto;
   }
 }
 </style>

@@ -1,14 +1,14 @@
 <script setup lang="ts">
 import { createNamespace } from '@/utils'
 const { bem } = createNamespace('heluo-sys-notice')
-import {useWarnTypeStore, useWarnDialogStore} from '@/stores'
+import {useWarnTypeStore, useGlobalVisibleControllerStore} from '@/stores'
 const {getWarnType, allWarnCount}  = useWarnTypeStore()
-const {controlVisible}  = useWarnDialogStore()
+const {globalControlVisible}  = useGlobalVisibleControllerStore()
 getWarnType()
 </script>
 
 <template>
-   <div :class="[bem(), 'flex-center']" @click="controlVisible()">
+   <div :class="[bem(), 'flex-center']" @click="globalControlVisible({name: 'warn'})">
     <img src="@/assets/usedimg/notice@3x.png" />
     <i>{{allWarnCount >= 99 ? '99+' : allWarnCount}}</i>
    </div>
@@ -17,7 +17,7 @@ getWarnType()
 <style scoped lang="less">
 .heluo-sys-notice{
    position: fixed;
-   top:0;
+   top:10px;
    right:130px;
    background: #282E32;
    height: 35px;

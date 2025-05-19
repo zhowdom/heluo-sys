@@ -4,7 +4,6 @@ import {ref} from 'vue'
 import {useWarnTypeStore} from '@/stores'
 import { storeToRefs } from 'pinia'
 
-console.log('MIMIIMI')
 export function useLoadMoreWarn() {
   const warnTypeStore = useWarnTypeStore()
   const {currenntChoosedWarnCode} = storeToRefs(warnTypeStore)

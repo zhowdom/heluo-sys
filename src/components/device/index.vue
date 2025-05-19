@@ -26,11 +26,10 @@ defineProps<{
   width:280px;
   background: linear-gradient( 333deg, #00C2CE 0%, rgba(0,194,206,0) 100%), rgba(12,12,20,0.7);
   border-radius: 4px;
-  margin-left:100px;
   &__main{
     padding: 10px 5px;
     overflow-y:scroll;
-    height:320px;
+    height:330px;
   }
   &__each{
     display: flex;

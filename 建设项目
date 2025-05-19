@@ -170,7 +170,7 @@ npm install --save-dev @types/node
 
 
 
-报错处理：
+遇到的报错处理：
 
 [Intervention] Unable to preventDefault inside passive event listener due to target being treated as passive.
 
@@ -179,4 +179,21 @@ Css: 处理
 .no-scroll {
   touch-action: none;
   overscroll-behavior: contain;
+}
+
+TS plugin报错：
+需要最终配置如下，才可以
+{
+  "compilerOptions": {
+    "verbatimModuleSyntax": false,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "module": "esnext",
+    "moduleResolution": "bundler", // 或 node16
+    "target": "esnext",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"] // important setting
+    }
+  }
 }

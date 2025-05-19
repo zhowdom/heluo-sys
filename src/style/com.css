@@ -61,3 +61,31 @@ ul,li,ol{
 .height100{
   height:100vh!important;
 }
+
+/* 整个滚动条 */
+::-webkit-scrollbar {
+  width: 10px; /* 垂直滚动条宽度 */
+  height: 10px; /* 水平滚动条高度 */
+}
+
+/* 滚动条轨道（背景） */
+::-webkit-scrollbar-track {
+  background: #456c6e; 
+  border-radius: 5px;
+}
+
+/* 滚动条滑块（可拖动部分） */
+::-webkit-scrollbar-thumb {
+  background: #08b5bb; 
+  border-radius: 5px;
+}
+
+/* 鼠标悬停时滑块样式 */
+::-webkit-scrollbar-thumb:hover {
+  background: #23b79f; 
+}
+
+/* 滚动条角落（水平和垂直滚动条交汇处） */
+::-webkit-scrollbar-corner {
+  background: #f1f1f1;
+}

@@ -10,16 +10,20 @@ const refFloor = ref<HTMLElement>(null!)
 
 <template>
   <div :class="[bem(), 'flex-between']">
-    <floor top="270px" left="0px" path="layer" ref="refFloor" />
+    <!-- <floor top="270px" left="0px" path="layer" ref="refFloor" /> -->
+    <floor path="layer" ref="refFloor" />
     <device :floorToDeviceList="refFloor?.floorToDeviceList" />
-    <profession />
+    <profession :class="bem('mgl-auto')" />
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="less">
 .heluo-sys-layer {
   height:100%;
   width:100%;
   position:relative;
+  &__mgl-auto{
+    margin-left: auto;
+  }
 }
 </style>

@@ -76,22 +76,22 @@ export function useFloor(path:string) {
 
     // click the floor
     floorItems.forEach((item, index) => {
-        item.addEventListener('click', function() {
-            floorItems.forEach(li => li.classList.remove('cur'));
-            this.classList.add('cur');
-            let scrollIndex = currentIndex;
-            
-            // If the clicked floor lies ahead of the current viewport
-            if (index < currentIndex) {
-              scrollIndex = index;
-            } 
-            // If the clicked floor is after the current visible area
-            else if (index >= currentIndex + maxVisibleItems) {
-              scrollIndex = index - maxVisibleItems + 1;
-            }
-            
-            scrollToIndex(scrollIndex);
-        });
+      item.addEventListener('click', function() {
+        floorItems.forEach(li => li.classList.remove('cur'));
+        this.classList.add('cur');
+        let scrollIndex = currentIndex;
+        
+        // If the clicked floor lies ahead of the current viewport
+        if (index < currentIndex) {
+          scrollIndex = index;
+        } 
+        // If the clicked floor is after the current visible area
+        else if (index >= currentIndex + maxVisibleItems) {
+          scrollIndex = index - maxVisibleItems + 1;
+        }
+        
+        scrollToIndex(scrollIndex);
+      });
     });
 
   }

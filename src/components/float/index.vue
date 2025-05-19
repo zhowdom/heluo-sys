@@ -1,15 +1,18 @@
 <script setup lang="ts">
 import { createNamespace } from '@/utils'
 const { bem } = createNamespace('heluo-sys-float-menu')
+import {UeReportType} from '@/types'
+import {useUeConnect} from '@/hooks'
+const {ueConnect} = useUeConnect()
 </script>
 
 <template>
    <div :class="[bem(), 'flex-center']">
-    <img src="@assets/usedimg/east@3x.png" />
-    <img src="@assets/usedimg/south@3x.png" />
-    <img src="@assets/usedimg/home@3x.png" />
-    <img src="@assets/usedimg/west@3x.png" />
-    <img src="@assets/usedimg/north@3x.png" />
+    <img src="@assets/usedimg/east@3x.png" @click="ueConnect(UeReportType.FLOAT_DIRECTION, { opt: '东' })" />
+    <img src="@assets/usedimg/south@3x.png" @click="ueConnect(UeReportType.FLOAT_DIRECTION, { opt: '南' })" />
+    <img src="@assets/usedimg/home@3x.png" @click="ueConnect(UeReportType.FLOAT_MENU_HOME, { opt: '首页' })" />
+    <img src="@assets/usedimg/west@3x.png" @click="ueConnect(UeReportType.FLOAT_DIRECTION, { opt: '西' })" />
+    <img src="@assets/usedimg/north@3x.png" @click="ueConnect(UeReportType.FLOAT_DIRECTION, { opt: '北' })" />
    </div>
 </template>
 
@@ -27,6 +30,7 @@ const { bem } = createNamespace('heluo-sys-float-menu')
   img{
     height: 40px;
     width: 40px;
+    cursor: pointer;
   }
 }
 </style>

@@ -8,7 +8,6 @@ export function useWeather() {
   const getWeatherData = async () => {
     const res = await getweatherApi()
     weatherInfos.value = res?.data?.data
-    console.log(weatherInfos.value.wea, 'okok')
   }
   
   return {

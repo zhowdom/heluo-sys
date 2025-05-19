@@ -1,14 +1,14 @@
 <script setup lang="ts">
 import Float from '@/components/float/index.vue'
 import Upheader from '@/components/upheader/index.vue'
-import {useWarnDialogStore} from '@/stores'
+import {useGlobalVisibleControllerStore} from '@/stores'
 import { defineAsyncComponent } from 'vue';
 import { storeToRefs } from 'pinia'
 const Warn = defineAsyncComponent(() => import('@/components/warn/index.vue'))
 import { createNamespace } from '@/utils'
 const { bem } = createNamespace('heluo-sys-app-wrap')
-const warnDialogStore = useWarnDialogStore()
-const {warnDialogVisible} = storeToRefs(warnDialogStore)
+const warnDialogStore = useGlobalVisibleControllerStore()
+const {globalVisiblePool} = storeToRefs(warnDialogStore)
 </script>
 
 <template>
@@ -16,8 +16,8 @@ const {warnDialogVisible} = storeToRefs(warnDialogStore)
     <Float />
     <Upheader />
     <router-view />    
-    <component v-if="warnDialogVisible" :is="Warn" />
+    <component v-if="globalVisiblePool.warn.state" :is="Warn" />
   </div>
 </template>
-<style scoped>
+<style scoped lang="less">
 </style>

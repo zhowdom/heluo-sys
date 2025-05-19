@@ -2,8 +2,11 @@
 import { createNamespace } from '@/utils'
 const { bem } = createNamespace('heluo-sys-weather')
 import {useWeather} from '@/hooks'
+import {UeReportType} from '@/types'
+import {useUeConnect} from '@/hooks'
 const {getWeatherData, weatherInfos} = useWeather()
 getWeatherData()
+const {ueConnect} = useUeConnect()
 </script>
 
 <template>
@@ -18,7 +21,7 @@ getWeatherData()
       </div>
       <div :class="bem('r')">{{weatherInfos?.week}}</div>
     </div>
-    <div :class="bem('control')">天气控制</div>
+    <div :class="bem('control')" @click="ueConnect(UeReportType.WEATHER)">天气控制</div>
    </div>
 </template>
 

@@ -7,5 +7,5 @@ import login from '@/components/login/index.vue'
   <login />
 </template>
 
-<style scoped>
+<style scoped lang="less">
 </style>

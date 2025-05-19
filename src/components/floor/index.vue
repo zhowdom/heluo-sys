@@ -3,10 +3,12 @@ import { createNamespace } from '@/utils'
 import {useFloor} from '@/hooks'
 const { bem } = createNamespace('heluo-sys-floor')
 import {onMounted} from 'vue'
+
+import {UeReportType, IFloor} from '@/types'
+import {useUeConnect} from '@/hooks'
+const {ueConnect} = useUeConnect()
+
 const props = defineProps<{
-  top?: string;
-  left?: string;
-  right?: string;
   path?: string
 }>();
 const {getFloorData, floorData, formatFloor, initFloor, getFloorlisttodevice, floorToDeviceList} = useFloor(props.path)
@@ -14,20 +16,24 @@ const {getFloorData, floorData, formatFloor, initFloor, getFloorlisttodevice, fl
 onMounted(async () => {
   await getFloorData()
   initFloor()
-  console.log(floorToDeviceList.value, 'jjjj9999jj')
 })
 
 defineExpose({
   floorToDeviceList
 })
+
+const clickWraper = (item:IFloor) => {
+  getFloorlisttodevice(item.spaceId)
+  ueConnect(UeReportType.FLOOR, {opt: item.spaceCode})
+}
 </script>
 
 <template>
-   <div :class="[bem()]" :style="{top, left, right}">
+   <div :class="[bem()]">
     <div :class="[bem('prev'), 'prev']"></div>
     <div class="scroll">
       <ul>
-        <li v-for="(item, idx) in floorData" :key="idx" @click="getFloorlisttodevice(item.spaceId)">{{formatFloor(item?.spaceCode)}}</li>
+        <li v-for="(item, idx) in floorData" :key="idx" @click="clickWraper(item)">{{formatFloor(item?.spaceCode)}}</li>
       </ul>
     </div>
     <div :class="[bem('next'), 'next']"></div>
@@ -38,10 +44,8 @@ defineExpose({
 .heluo-sys-floor{
   width: 88px;
   height: 380px;
-  position: absolute;
-  // top:100px;
-  // left:-100px;
   text-align:center;
+  margin-right:10px;
   &__prev,&__next{
     height:20px;
     cursor: pointer;

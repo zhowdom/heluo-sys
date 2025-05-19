@@ -17,7 +17,6 @@ service.interceptors.request.use(
   (config) => {
     const {userInfo} = useUserStore() // can not put [use fn] outter
     const token = userInfo.accesstoken
-    console.log(token, 'token')
     if (token) {
       // set in body
       config.params = {
