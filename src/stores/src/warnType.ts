@@ -35,7 +35,7 @@ export const useWarnTypeStore = defineStore("warnType", () => {
   }
 }, {
   persist: {
-    paths: ['warnTypeArr', 'allWarnCount', 'currenntChoosedWarnCode']
+    pick: ['warnTypeArr', 'allWarnCount', 'currenntChoosedWarnCode']
   }
 }
 )
