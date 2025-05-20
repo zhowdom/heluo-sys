@@ -8,7 +8,7 @@ export default defineConfig({
   build: {
     assetsInlineLimit: 4096 // < 4KB的文件转base64
   },
-  base: "./", // 相对路径[打包后空白]
+  // base: "./", // 相对路径[打包后空白]
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
