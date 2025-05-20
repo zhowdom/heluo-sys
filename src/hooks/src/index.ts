@@ -1,5 +1,4 @@
 export * from './useLogin'
-export * from './useSeat'
 export * from './useCard'
 export * from './usefloor'
 export * from './useLoadMoreWarn'

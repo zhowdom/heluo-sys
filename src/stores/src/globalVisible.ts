@@ -21,7 +21,7 @@ export const useGlobalVisibleControllerStore = defineStore("globalVisibleControl
     }
   }
 
-  // 更改两侧数据面板的收起和展开
+  // 更改首页两侧数据面板的收起和展开
   const SwitchFoldOnlyTwoSide = (state:boolean) => {
     globalControlVisible({name: 'home_two_pannel', state})
   }

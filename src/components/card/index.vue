@@ -31,7 +31,7 @@ getCardData()
       <cardItemb :cardInfos="cardInfos" />
     </template>
     <template v-else>
-      <seat />
+      <seat :name="name" />
       <cardItem :cardInfos="cardInfos" />
     </template>
    </div>

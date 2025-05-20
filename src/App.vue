@@ -7,8 +7,8 @@ import { storeToRefs } from 'pinia'
 const Warn = defineAsyncComponent(() => import('@/components/warn/index.vue'))
 import { createNamespace } from '@/utils'
 const { bem } = createNamespace('heluo-sys-app-wrap')
-const warnDialogStore = useGlobalVisibleControllerStore()
-const {globalVisiblePool} = storeToRefs(warnDialogStore)
+const globalVisibleControllerStore = useGlobalVisibleControllerStore()
+const {globalVisiblePool} = storeToRefs(globalVisibleControllerStore)
 </script>
 
 <template>

@@ -16,8 +16,8 @@ defineProps({
 const {loadMoreWarn, warnListArr, clickWraper, isloadingRequest, curWarnMenuActivedIdx} = useLoadMoreWarn()
 const warnTypeStore = useWarnTypeStore()
 const {warnTypeArr, currenntChoosedWarnCode, } = storeToRefs(warnTypeStore)
-const warnDialogStore = useGlobalVisibleControllerStore()
-const {globalVisiblePool} = storeToRefs(warnDialogStore)
+const globalVisibleControllerStore = useGlobalVisibleControllerStore()
+const {globalVisiblePool} = storeToRefs(globalVisibleControllerStore)
 const { containerRef, isLoadedAllData } = useInfiniteScroll(loadMoreWarn);
 onMounted(() => {
   clickWraper(currenntChoosedWarnCode.value, true, 0)

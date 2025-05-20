@@ -51,7 +51,8 @@ defineProps({
   &__val{
     font-family: D-DIN Exp-DINExp, D-DIN Exp-DINExp;
     font-weight: bold;
-    font-size: 20px;
+    // font-size: 32px;
+    font-size: 28px;
     color: #FFFFFF;
     padding-top:10px;
   }

@@ -3,15 +3,20 @@
 import card from '@/components/card/index.vue'
 import floor from '@/components/floor/index.vue'
 import { createNamespace } from '@/utils'
+import {useGlobalVisibleControllerStore} from '@/stores'
+import {storeToRefs} from 'pinia'
+const globalVisibleControllerStore = useGlobalVisibleControllerStore()
+const {globalVisiblePool} = storeToRefs(globalVisibleControllerStore)
 const { bem } = createNamespace('heluo-sys-home-wrap')
-
+setTimeout(() => {
+  globalVisibleControllerStore.SwitchFoldOnlyTwoSide(false)
+}, 3000)
 </script>
 
 <template>
-  <div :class="[bem(), 'flex-between']">
+  <div :class="[bem(), 'flex-between']" v-show="globalVisiblePool.home_two_pannel.state">
     <!-- <img :src="logoUrl" alt="logo"> -->
     <!-- <img src="@/assets/usedimg/mask@2x.png" alt="logo"> -->
-
     <div :class="bem('l')">
       <card name="airconditional" position="left"></card>
       <card name="newwind" position="left"></card>
@@ -19,8 +24,6 @@ const { bem } = createNamespace('heluo-sys-home-wrap')
     </div>
     <floor :class="bem('mrgl-auto')" />
     <div :class="bem('r')">
-      <!-- <floor top="100px" left="-100px" /> -->
-      
       <card name="devicesituation" position="right"></card>
       <card name="exhaust" position="right"></card>
       <card name="remainwind" position="right"></card>

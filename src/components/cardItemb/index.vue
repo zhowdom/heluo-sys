@@ -18,37 +18,37 @@ defineProps({
       </div>
       <div :class="bem('r')">
         <p>接入设备数</p>
-        <p>{{cardInfos.exceptionCount}}</p>
+        <p class="num">{{cardInfos.exceptionCount}}</p>
       </div>
     </div>
 
     <div :class="[bem('mini'), 'flex-between']">
       <div :class="bem('l')">
-        <img src="@assets/usedimg/taishi-1@3x(1).png">
+        <img src="@assets/usedimg/taishi-2@3x(3).png">
       </div>
       <div :class="bem('r')">
         <p>运行设备数</p>
-        <p>{{cardInfos.runingCount}}</p>
+        <p class="num">{{cardInfos.runingCount}}</p>
       </div>
     </div>
 
     <div :class="[bem('mini'), 'flex-between']">
       <div :class="bem('l')">
-        <img src="@assets/usedimg/taishi-1@3x(1).png">
+        <img src="@assets/usedimg/taishi-3@3x.png">
       </div>
       <div :class="bem('r')">
         <p>故障设备数</p>
-        <p>{{cardInfos.offlineCount}}</p>
+        <p class="num">{{cardInfos.offlineCount}}</p>
       </div>
     </div>
 
     <div :class="[bem('mini'), 'flex-between']">
       <div :class="bem('l')">
-        <img src="@assets/usedimg/taishi-1@3x(1).png">
+        <img src="@assets/usedimg/taishi-4@3x(2).png">
       </div>
       <div :class="bem('r')">
         <p>警告设备数</p>
-        <p>{{cardInfos.failureCount}}</p>
+        <p class="num">{{cardInfos.failureCount}}</p>
       </div>
     </div>
 
@@ -65,8 +65,16 @@ defineProps({
   }
   &__l{
     img{
-      width:60px;
-      height:66px;
+      width:70px;
+      height:75px;
+    }
+  }
+  &__r{
+    p.num{
+      font-family: D-DIN Exp-DINExp, D-DIN Exp-DINExp;
+      font-weight: bold;
+      font-size: 21px;
+      color: #FFFFFF;
     }
   }
 }

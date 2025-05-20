@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { createNamespace } from '@/utils'
+import { createNamespace, autoImg } from '@/utils'
 const { bem } = createNamespace('heluo-sys-device')
 import cardtitle from '@/components/cardtitle/index.vue'
 // import Loading from '@/components/loading/index.vue'
@@ -16,7 +16,7 @@ defineProps<{
     <div :class="bem('main')">
       <!-- <Loading v-if="loading" /> -->
       <div v-for="(item, idx) in floorToDeviceList" :key="idx" :class="bem('each')">
-        <img src="@/assets/usedimg/device/AirConditioner.png" />
+        <img :src="autoImg(item.typeCode, 'device')" />
         <p>{{item.typeName}}</p>
         <span>{{item.typeCount}}</span>
       </div>
