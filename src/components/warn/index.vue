@@ -25,7 +25,7 @@ onMounted(() => {
 </script>
 
 <template>
-   <div :class="[bem(), 'mydialog']" ref="warnDialogRef" v-if="globalVisiblePool.warn.state">
+   <div :class="[bem(), 'animate__animated animate__faster', globalVisiblePool.warn.state ? 'animate__fadeInDown' : 'animate__fadeOutDown']">
     <div :class="bem('type-box')">
       <ul>
         <li v-for="(item, idx) in warnTypeArr" :class="[curWarnMenuActivedIdx === idx ? 'cur' : '']" :key="idx" @click="clickWraper(item.typeCode, true, idx)">{{item.typeName}}</li>
@@ -42,8 +42,8 @@ onMounted(() => {
         <p v-else-if="isLoadedAllData && !isloadingRequest">已加载完全部~</p>
       </div>
     </div>
-    <div :class="bem('mask-layer')" @click="globalVisiblePool.warn.state = !globalVisiblePool.warn.state"></div>
-   </div>
+  </div>
+  <div :class="bem('mask-layer')" @click="globalVisiblePool.warn.state = !globalVisiblePool.warn.state"></div>
 </template>
 
 <style scoped lang="less">
@@ -97,7 +97,7 @@ onMounted(() => {
     left: 0;
     right:0;
     bottom: 0;
-    z-index: -1;
+    z-index: 1;
     opacity: 0;
   }
 }

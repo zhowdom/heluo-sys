@@ -4,16 +4,25 @@ const { bem } = createNamespace('heluo-sys-weather')
 import {useWeather} from '@/hooks'
 import {UeReportType} from '@/types'
 import {useUeConnect} from '@/hooks'
+import {useGlobalVisibleControllerStore} from '@/stores'
 const {getWeatherData, weatherInfos} = useWeather()
 getWeatherData()
 const {ueConnect} = useUeConnect()
+const globalVisibleControllerStore = useGlobalVisibleControllerStore()
+
+// for debugger
+let toggle = false;
+function toggleValue() {
+  toggle = !toggle;
+  return toggle;
+}
 </script>
 
 <template>
    <div :class="[bem(), 'flex-center']">
     <div :class="[bem('infos'), 'flex-center']">
       <div :class="[bem('l'), 'flex-center']">
-        <img src="@/assets/usedimg/qing@3x.png" />
+        <img src="@/assets/usedimg/qing@3x.png" @click="globalVisibleControllerStore.globalControlVisible({name: 'home_two_pannel', state: toggleValue()})" />
         <div :class="[bem('info-main')]">
           <p :class="bem('desc')">{{weatherInfos?.wea}}</p>
           <p :class="bem('temp')">{{weatherInfos?.tem}}</p>
