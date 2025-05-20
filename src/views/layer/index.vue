@@ -5,7 +5,7 @@ import profession from '@/components/profession/index.vue'
 import { createNamespace } from '@/utils'
 import {ref} from 'vue'
 const { bem } = createNamespace('heluo-sys-layer')
-const refFloor = ref<HTMLElement>(null!)
+const refFloor = ref(null)
 </script>
 
 <template>
