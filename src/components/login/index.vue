@@ -3,12 +3,12 @@ import { createNamespace } from '@/utils'
 const { bem } = createNamespace('heluo-sys-login')
 import { useLogin } from '@/hooks'
 
-const { loginstr, doLogin } = useLogin()
+const { doLogin } = useLogin()
 </script>
 
 <template>
    <div :class="[bem(), 'flex-center', 'set-center']">
-    <a @click="doLogin">登陆 + {{loginstr}}</a>
+    <a @click="doLogin">登陆</a>
    </div>
 </template>
 
@@ -20,7 +20,17 @@ const { loginstr, doLogin } = useLogin()
   border-radius: 10px;
   a{
     color: #fff;
-    background: drak;
+    background: #66c2ac;
+    display: inline-block;
+    width: 200px;
+    height: 50px;
+    border-radius: 8px;
+    line-height: 50px;
+    text-align: center;
+    cursor: pointer;
+    &:hover{
+      font-weight: bold;
+    }
   }
 }
 </style>

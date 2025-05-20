@@ -20,10 +20,11 @@ const {ueConnect} = useUeConnect()
 .heluo-sys-float-menu{
   width: 448px;
   height: 62px;
-  position: fixed;
+  position: absolute;
   bottom: 26px;
   margin-left: -224px;
   left: 50%;
+  z-index: 200;
   background: linear-gradient( 180deg, rgba(69,94,90,0.61) 0%, rgba(12,12,20,0.2) 100%);
   box-shadow: 0px 6px 14px 0px rgba(0,42,72,0.4);
   border-radius: 8px 8px 8px 8px;

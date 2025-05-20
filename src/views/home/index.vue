@@ -8,9 +8,7 @@ import {storeToRefs} from 'pinia'
 const globalVisibleControllerStore = useGlobalVisibleControllerStore()
 const {globalVisiblePool} = storeToRefs(globalVisibleControllerStore)
 const { bem } = createNamespace('heluo-sys-home-wrap')
-setTimeout(() => {
-  globalVisibleControllerStore.SwitchFoldOnlyTwoSide(false)
-}, 3000)
+// globalVisibleControllerStore.SwitchFoldOnlyTwoSide(false)
 </script>
 
 <template>
