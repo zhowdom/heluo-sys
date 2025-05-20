@@ -14,7 +14,7 @@ export default defineConfig({
   ],
   base: './',
   build: {
-    target: ['es2015', 'chrome63'], // 默认是modules,百度说是更改这个会去输出兼容浏览器
+    target: ['es2015', 'chrome63'], // 默认是modules,更改这个会去输出兼容浏览器
     assetsInlineLimit: 4096 // < 4KB的文件转base64
   },
   resolve: {

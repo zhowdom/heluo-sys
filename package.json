@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@vitejs/plugin-legacy": "^6.1.1",
+    "animate.css": "^4.1.1",
     "axios": "^1.9.0",
     "pinia": "^3.0.2",
     "pinia-plugin-persistedstate": "^4.3.0",

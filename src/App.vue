@@ -3,6 +3,7 @@ import Float from '@/components/float/index.vue'
 import Upheader from '@/components/upheader/index.vue'
 import {useGlobalVisibleControllerStore} from '@/stores'
 import { defineAsyncComponent } from 'vue';
+import 'animate.css';
 import { storeToRefs } from 'pinia'
 const Warn = defineAsyncComponent(() => import('@/components/warn/index.vue'))
 import { createNamespace } from '@/utils'
